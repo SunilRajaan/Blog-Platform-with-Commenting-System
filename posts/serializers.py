@@ -25,7 +25,7 @@ class TagSerializer(serializers.ModelSerializer):
 
 class RecursiveField(serializers.Serializer):
     """
-    Helper serializer for recursive nested replies in CommentSerializer.
+    Advanced technique for handling nested data structures. It's used to serialize a comment's replies.
     """
     def to_representation(self, value):
         serializer = self.parent.parent.__class__(value, context=self.context)

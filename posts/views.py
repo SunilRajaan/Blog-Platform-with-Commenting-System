@@ -30,7 +30,7 @@ class PostViewSet(viewsets.ModelViewSet):
     filterset_fields = ['tag__name', 'created_at',]
     search_fields = ['title', 'category__name', 'author__username',]
 
-    # User will logged-in as author when creating a post.
+    # logged-in user will be as author when creating a post.
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
 
@@ -49,7 +49,7 @@ class CommentViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(post__id=post_id)
         return queryset
 
-    # User will logged-in as author when creating a comment.
+    # logged-in user will be as author when creating a comment.
     def perform_create(self, serializer):
         serializer.save(author = self.request.user)
 
